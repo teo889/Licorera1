@@ -1,25 +1,25 @@
-CREATE DATABASE db_licorera;
+CREATE DATABASE db_licorera1;
 GO
 
-USE db_licorera;
+USE db_licorera1;
 GO
 
 -- 1. Métodos de Pago
 CREATE TABLE MetodosPagos (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL
 );
 
 -- 2. Proveedores
 CREATE TABLE Proveedores (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL,
     Telefono NVARCHAR(20) NOT NULL
 );
 
 -- 3. Empleados
 CREATE TABLE Empleados (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(40) NOT NULL,
     Apellido NVARCHAR(40) NOT NULL,
     Cedula NVARCHAR(40) NOT NULL,
@@ -28,27 +28,27 @@ CREATE TABLE Empleados (
 
 -- 4. Departamentos
 CREATE TABLE Departamentos (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL
 );
 
 -- 5. Municipios
 CREATE TABLE Municipios (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL,
     DepartamentoId INT NOT NULL FOREIGN KEY REFERENCES Departamentos(Id)
 );
 
 -- 6. Promociones
 CREATE TABLE Promociones (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(100) NOT NULL,
     Descripcion NVARCHAR(200) NOT NULL
 );
 
 -- 7. Vehículos
 CREATE TABLE Vehiculos (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Placa NVARCHAR(20) NOT NULL,
     Tipo NVARCHAR(50) NOT NULL,
     Descripcion NVARCHAR(50) NOT NULL
@@ -56,14 +56,14 @@ CREATE TABLE Vehiculos (
 
 -- 8. Tipos de Licores
 CREATE TABLE Tipolicores (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL,
     Descripcion NVARCHAR(200) NULL
 );
 
 -- 9. Domiciliarios
 CREATE TABLE Domiciliarios (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(100) NOT NULL,
     Cedula NVARCHAR(50) NULL,
     Tipo NVARCHAR(100) NULL,
@@ -72,7 +72,7 @@ CREATE TABLE Domiciliarios (
 
 -- 10. Direcciones
 CREATE TABLE Direcciones (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Descripcion NVARCHAR(200) NOT NULL,
     DepartamentoId INT NOT NULL FOREIGN KEY REFERENCES Departamentos(Id),
     MunicipioId INT NOT NULL FOREIGN KEY REFERENCES Municipios(Id)
@@ -80,7 +80,7 @@ CREATE TABLE Direcciones (
 
 -- 11. Clientes
 CREATE TABLE Clientes (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombres NVARCHAR(100) NOT NULL,
     Apellidos NVARCHAR(100) NOT NULL,
     Telefono NVARCHAR(50) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE Clientes (
 
 -- 12. Productos
 CREATE TABLE Productos (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Nombre NVARCHAR(50) NOT NULL,
     PrecioUnitario DECIMAL(12,2) NOT NULL,
     ProveedorId INT NOT NULL FOREIGN KEY REFERENCES Proveedores(Id),
@@ -99,7 +99,7 @@ CREATE TABLE Productos (
 
 -- 13. Facturas
 CREATE TABLE Facturas (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Fecha DATE NOT NULL,
     SubTotal DECIMAL(12,2) NOT NULL,
     Iva DECIMAL(12,2) NOT NULL,
@@ -110,7 +110,7 @@ CREATE TABLE Facturas (
 
 -- 14. Domicilios
 CREATE TABLE Domicilios (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     Descripcion NVARCHAR(200) NOT NULL,
     FechaEntrega DATE NULL,
     ClienteId INT NOT NULL FOREIGN KEY REFERENCES Clientes(Id),
@@ -120,25 +120,20 @@ CREATE TABLE Domicilios (
 
 -- 15. DetalleFacturas
 CREATE TABLE DetalleFacturas (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     FacturaId INT NOT NULL FOREIGN KEY REFERENCES Facturas(Id),
     ProductoId INT NOT NULL FOREIGN KEY REFERENCES Productos(Id),
     Cantidad INT NOT NULL,
     Total DECIMAL(12,2) NOT NULL
 );
-
 GO
 
--- 1. Métodos de Pago
-INSERT INTO MetodosPagos (Nombre) VALUES
-('Efectivo'),
-('Tarjeta Crédito'),
-('Tarjeta Débito'),
-('Nequi'),
-('Daviplata'),
-('Transferencia Bancaria');
 
--- 2. Proveedores
+-- Métodos de Pago
+INSERT INTO MetodosPagos (Nombre) VALUES
+('Efectivo'),('Tarjeta Crédito'),('Tarjeta Débito'),('Nequi'),('Daviplata'),('Transferencia Bancaria');
+
+-- Proveedores
 INSERT INTO Proveedores (Nombre, Telefono) VALUES
 ('Distribuidora Bogotá', '3101234567'),
 ('Licores Medellín', '3159876543'),
@@ -147,7 +142,7 @@ INSERT INTO Proveedores (Nombre, Telefono) VALUES
 ('Licores Cartagena', '3112233445'),
 ('Bebidas Pereira', '3133344556');
 
--- 3. Empleados
+-- Empleados
 INSERT INTO Empleados (Nombre, Apellido, Cedula, Telefono) VALUES
 ('Juan', 'Pérez', '1012345678', '3001112233'),
 ('María', 'Gómez', '1023456789', '3012233445'),
@@ -156,25 +151,15 @@ INSERT INTO Empleados (Nombre, Apellido, Cedula, Telefono) VALUES
 ('Luis', 'Ramírez', '1056789012', '3045566778'),
 ('Paola', 'Torres', '1067890123', '3056677889');
 
--- 4. Departamentos
+-- Departamentos
 INSERT INTO Departamentos (Nombre) VALUES
-('Bogotá D.C.'),
-('Antioquia'),
-('Valle del Cauca'),
-('Atlántico'),
-('Bolívar'),
-('Risaralda');
+('Bogotá D.C.'),('Antioquia'),('Valle del Cauca'),('Atlántico'),('Bolívar'),('Risaralda');
 
--- 5. Municipios
+-- Municipios
 INSERT INTO Municipios (Nombre, DepartamentoId) VALUES
-('Bogotá', 1),
-('Medellín', 2),
-('Cali', 3),
-('Barranquilla', 4),
-('Cartagena', 5),
-('Pereira', 6);
+('Bogotá', 1),('Medellín', 2),('Cali', 3),('Barranquilla', 4),('Cartagena', 5),('Pereira', 6);
 
--- 6. Promociones
+-- Promociones
 INSERT INTO Promociones (Nombre, Descripcion) VALUES
 ('Descuento 10%', 'Descuento del 10% en compras superiores a $100.000'),
 ('Promo Whisky', 'Promoción de whisky 2x1'),
@@ -183,7 +168,7 @@ INSERT INTO Promociones (Nombre, Descripcion) VALUES
 ('Fines de Semana', 'Descuento especial fines de semana'),
 ('Mes del Cliente', '10% de descuento durante todo el mes');
 
--- 7. Vehiculos
+-- Vehículos
 INSERT INTO Vehiculos (Placa, Tipo, Descripcion) VALUES
 ('ABC123', 'Moto', 'Moto Yamaha azul'),
 ('DEF456', 'Carro', 'Carro Chevrolet Spark'),
@@ -192,7 +177,7 @@ INSERT INTO Vehiculos (Placa, Tipo, Descripcion) VALUES
 ('MNO345', 'Moto', 'Moto Honda negra'),
 ('PQR678', 'Carro', 'Carro Renault Logan');
 
--- 8. Tipolicores
+-- Tipos de Licores
 INSERT INTO Tipolicores (Nombre, Descripcion) VALUES
 ('Whisky', 'Whisky importado y nacional'),
 ('Ron', 'Ron colombiano y caribeño'),
@@ -201,7 +186,7 @@ INSERT INTO Tipolicores (Nombre, Descripcion) VALUES
 ('Aguardiente', 'Aguardiente colombiano'),
 ('Cerveza', 'Cerveza artesanal y comercial');
 
--- 9. Domiciliarios
+-- Domiciliarios
 INSERT INTO Domiciliarios (Nombre, Cedula, Tipo, VehiculoId) VALUES
 ('Pedro Morales', '1012345671', 'Motorizado', 1),
 ('Sofía Ríos', '1012345672', 'Automovilista', 2),
@@ -210,7 +195,7 @@ INSERT INTO Domiciliarios (Nombre, Cedula, Tipo, VehiculoId) VALUES
 ('Andrés López', '1012345675', 'Motorizado', 5),
 ('Daniela Pérez', '1012345676', 'Automovilista', 6);
 
--- 10. Direcciones
+-- Direcciones
 INSERT INTO Direcciones (Descripcion, DepartamentoId, MunicipioId) VALUES
 ('Calle 10 # 20-30', 1, 1),
 ('Carrera 50 # 10-20', 2, 2),
@@ -219,7 +204,7 @@ INSERT INTO Direcciones (Descripcion, DepartamentoId, MunicipioId) VALUES
 ('Carrera 7 # 56-78', 5, 5),
 ('Avenida 10 # 22-44', 6, 6);
 
--- 11. Clientes
+-- Clientes
 INSERT INTO Clientes (Nombres, Apellidos, Telefono, Cedula, DireccionId) VALUES
 ('Andrés', 'García', '3101234567', '1012345670', 1),
 ('Laura', 'Martínez', '3112233445', '1012345671', 2),
@@ -228,7 +213,7 @@ INSERT INTO Clientes (Nombres, Apellidos, Telefono, Cedula, DireccionId) VALUES
 ('Miguel', 'Hernández', '3145566778', '1012345674', 5),
 ('Natalia', 'Pérez', '3156677889', '1012345675', 6);
 
--- 12. Productos
+-- Productos
 INSERT INTO Productos (Nombre, PrecioUnitario, ProveedorId, TipoLicorId) VALUES
 ('Whisky Chivas', 120000, 1, 1),
 ('Ron Medellín', 80000, 2, 2),
@@ -237,7 +222,7 @@ INSERT INTO Productos (Nombre, PrecioUnitario, ProveedorId, TipoLicorId) VALUES
 ('Aguardiente Antioqueño', 50000, 5, 5),
 ('Cerveza Poker', 3000, 6, 6);
 
--- 13. Facturas
+-- Facturas
 INSERT INTO Facturas (Fecha, SubTotal, Iva, ClienteId, MetodoPagoId, PromocionId) VALUES
 ('2025-09-18', 120000, 21600, 1, 1, 1),
 ('2025-09-18', 80000, 14400, 2, 2, 2),
@@ -246,7 +231,7 @@ INSERT INTO Facturas (Fecha, SubTotal, Iva, ClienteId, MetodoPagoId, PromocionId
 ('2025-09-18', 50000, 9000, 5, 5, 5),
 ('2025-09-18', 3000, 540, 6, 6, 6);
 
--- 14. Domicilios
+-- Domicilios
 INSERT INTO Domicilios (Descripcion, FechaEntrega, ClienteId, DomiciliarioId, FacturaId) VALUES
 ('Entrega rápida', '2025-09-18', 1, 1, 1),
 ('Entrega estándar', '2025-09-18', 2, 2, 2),
@@ -255,7 +240,7 @@ INSERT INTO Domicilios (Descripcion, FechaEntrega, ClienteId, DomiciliarioId, Fa
 ('Entrega nocturna', '2025-09-18', 5, 5, 5),
 ('Entrega estandar', '2025-09-18', 6, 6, 6);
 
--- 15. DetalleFacturas
+-- DetalleFacturas
 INSERT INTO DetalleFacturas (FacturaId, ProductoId, Cantidad, Total) VALUES
 (1, 1, 1, 120000),
 (2, 2, 1, 80000),
@@ -263,6 +248,4 @@ INSERT INTO DetalleFacturas (FacturaId, ProductoId, Cantidad, Total) VALUES
 (4, 4, 1, 95000),
 (5, 5, 1, 50000),
 (6, 6, 1, 3000);
-
 GO
-

@@ -1,15 +1,14 @@
 ﻿using lib_dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Numerics;
+
 
 namespace lib_repositorios.Interfaces
 {
     public interface IConexion
     {
+        string? StringConexion { get; set; }
+
         DbSet<MetodosPagos>? MetodosPagos { get; set; }
         DbSet<Proveedores>? Proveedores { get; set; }
         DbSet<Empleados>? Empleados { get; set; }
@@ -25,7 +24,10 @@ namespace lib_repositorios.Interfaces
         DbSet<Facturas>? Facturas { get; set; }
         DbSet<Domicilios>? Domicilios { get; set; }
         DbSet<DetalleFacturas>? DetalleFacturas { get; set; }
+
         EntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();
     }
+
 }
+

@@ -1,9 +1,6 @@
 ﻿using lib_dominio.Entidades;
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using System.Collections.Generic;
-using System.Numerics;
 
 namespace lib_repositorios.Implementaciones
 {
@@ -16,7 +13,7 @@ namespace lib_repositorios.Implementaciones
             optionsBuilder.UseSqlServer(this.StringConexion!, p => { });
             optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
-        // DbSets para todas las tablas del script SQL
+
         public DbSet<MetodosPagos>? MetodosPagos { get; set; }
         public DbSet<Proveedores>? Proveedores { get; set; }
         public DbSet<Empleados>? Empleados { get; set; }
