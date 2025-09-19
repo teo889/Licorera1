@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Presentacion", "1.Presentacion", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pruebas unitarias", "Prueba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_dominio", "lib_dominio\lib_dominio.csproj", "{9756702A-0BFD-4175-B7D9-ED54B6B1B1C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib_repositorios", "lib_repositorios\lib_repositorios.csproj", "{28552B0D-B8F6-4384-ABCA-677CAD0D19F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{9756702A-0BFD-4175-B7D9-ED54B6B1B1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9756702A-0BFD-4175-B7D9-ED54B6B1B1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9756702A-0BFD-4175-B7D9-ED54B6B1B1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28552B0D-B8F6-4384-ABCA-677CAD0D19F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28552B0D-B8F6-4384-ABCA-677CAD0D19F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28552B0D-B8F6-4384-ABCA-677CAD0D19F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28552B0D-B8F6-4384-ABCA-677CAD0D19F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9756702A-0BFD-4175-B7D9-ED54B6B1B1C3} = {C3A2A399-FFD4-4FE0-9AEE-24F7B7AC960A}
+		{28552B0D-B8F6-4384-ABCA-677CAD0D19F3} = {A2419A78-F40A-4DAF-A48D-6B2CF71791B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2C0D67BF-ACF4-4AF6-BF29-6DDC96A431D7}
